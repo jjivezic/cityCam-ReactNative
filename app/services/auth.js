@@ -7,8 +7,10 @@ let url = 'http://10.0.2.2:3000/';
 
 class userService {
   async login(user) {
-        console.log('url', url)
         return HttpService.apiRequest('post', url + 'user/login', user);
+    }
+    async register(user) {
+        return HttpService.apiRequest('post', url + 'user/register', user);
     }
 }
 export default new userService()

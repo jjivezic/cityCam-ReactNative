@@ -11,7 +11,8 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            errMsg: false
+            errMsg: '',
+            err: false,
         };
         this.onButtonPress = this.onButtonPress.bind(this);
     }
@@ -29,7 +30,7 @@ class Login extends React.Component {
 
             const response = await userService.login(user)
             console.log('Response data', response)
-            
+
             await sessionService.storeData(response.user.token)
 
             let userLoged = await sessionService.getUser()
@@ -39,38 +40,18 @@ class Login extends React.Component {
             if (userLoged) {
                 console.log('ulogovan', userLoged)
                 this.props.navigation.navigate('Profil')
-            } else {
-                console.log('nije ulogovan', userLoged)
-                this.setState({
-                    errMsg: true
-                })
-                this.props.navigation.navigate('Home')
             }
         } catch (e) {
             console.log('EEE', e.response.data)
             this.setState({
-                errMsg: true
+                err: true,
+                errMsg: e.response.data.error.message
             })
         }
 
-
-        // return  userService.login(user)
-        // .then(response => {
-
-
-
-        // sessionService.create(response.data);
-        // if (sessionService.isAuth()) {
-
-        // }
-
-        // }).catch(error => {
-        //     console.log("Error Wrong username or password!", this.options)
-        // });
-
     }
     render() {
-        const { username, password, errMsg } = this.state;
+        const { username, password, errMsg, err } = this.state;
         return (
             <View style={style.container}>
 
@@ -88,9 +69,7 @@ class Login extends React.Component {
                         onChangeText={(text) => { this.setState({ password: text }) }}
                     />
                 </View>
-                {errMsg ? <View>
-                    <Text>Wrong credentials,try again</Text>
-                </View> : null}
+
                 <View style={style.btnContainer}>
                     <View style={style.btnBox}>
                         <TouchableOpacity
@@ -100,6 +79,9 @@ class Login extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                {err ? <View style={style.errMsgBox}>
+                    <Text style={style.errMsg}>{errMsg}</Text>
+                </View> : null}
             </View>
         );
     }

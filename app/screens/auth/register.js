@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import style from '../../styles/general'
+import userService from '../../services/auth';
 
 class Register extends React.Component {
     constructor(props) {
@@ -9,17 +10,43 @@ class Register extends React.Component {
         this.state = {
             userName: '',
             email:'',
-            password: ''
+            password: '',
+            errMsg: '',
+            err: false,
          
         };
         this.onButtonPress = this.onButtonPress.bind(this);
     }
 
-    onButtonPress() {
+    async onButtonPress() {
         console.log('Handle change', this.state)
+
+        try {
+            const user = {
+                username: this.state.username,
+                password: this.state.password,
+                email:this.state.email
+            }
+
+            console.log('user', user);
+
+            const response = await userService.register(user)
+            console.log('Response data', response)
+            this.props.navigation.navigate('Login')
+            // if (userLoged) {
+            //     console.log('ulogovan', userLoged)
+            //     this.props.navigation.navigate('Profil')
+            // }
+        } catch (e) {
+            this.setState({
+                err: true,
+                errMsg: e.response.data.error.message
+            })
+        }
     }
+    
     render() {
-        const { userName, password,email } = this.state;
+        const { username, password,email , errMsg, err} = this.state;
         return (
             <View style={style.container}>
 
@@ -27,8 +54,8 @@ class Register extends React.Component {
                     <TextInput
                         style={style.formInput}
                         placeholder="Your username"
-                        value={userName}
-                        onChangeText={(text) => { this.setState({ userName: text }) }}
+                        value={username}
+                        onChangeText={(text) => { this.setState({ username: text }) }}
                     />
                     <TextInput
                         style={style.formInput}

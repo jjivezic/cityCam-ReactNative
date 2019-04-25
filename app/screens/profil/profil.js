@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Button, TouchableOpacity } from "react-native";
 import style from '../../styles/general'
 
+
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -18,6 +19,7 @@ class Dashboard extends React.Component {
     //     this.props.navigation.navigate('Register')
     // }
     render() {
+        console.log('Profile',this.props)
         return (
             <View style={style.container}>
                 <Text style={style.title}> Dashboard </Text>

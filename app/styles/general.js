@@ -52,14 +52,24 @@ const style = StyleSheet.create({
     },
     // Forms style
     formContainer: {
-        width:'100%',
-        marginBottom:20
+        width: '100%',
+        marginBottom: 20
     },
     formInput: {
         height: 50,
         backgroundColor: '#ffffff',
-        marginBottom:8
+        marginBottom: 8
 
+    },
+    errMsgBox: {
+         backgroundColor: '#c5c5c5',
+        marginTop: 8,
+        width: '100%',
+        alignItems: 'center',
+        padding:3
+    },
+    errMsg: {
+        fontWeight: '600',
     }
 },
 )
