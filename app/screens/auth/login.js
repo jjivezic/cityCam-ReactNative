@@ -4,7 +4,12 @@ import style from '../../styles/general'
 import userService from '../../services/auth';
 import sessionService from '../../config/storage';
 
+
 class Login extends React.Component {
+    static navigationOptions = {
+        title: 'Sign In'
+    };
+
     constructor(props) {
         super(props);
         // Don't call this.setState() here!

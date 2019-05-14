@@ -4,6 +4,11 @@ import style from '../../styles/general'
 import userService from '../../services/auth';
 
 class Register extends React.Component {
+    static navigationOptions = {
+        title: 'Register',
+        /* No more header config here! */
+      };
+    
     constructor(props) {
         super(props);
         // Don't call this.setState() here!
@@ -17,6 +22,7 @@ class Register extends React.Component {
         };
         this.onButtonPress = this.onButtonPress.bind(this);
     }
+
 
     async onButtonPress() {
         console.log('Handle change', this.state)

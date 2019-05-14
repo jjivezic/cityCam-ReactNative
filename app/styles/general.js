@@ -13,7 +13,7 @@ const style = StyleSheet.create({
     },
     title: {
         fontSize: 30,
-        color: '#841584',
+        color: '#de5447',
         marginBottom: 50,
         fontWeight: '600'
     },
@@ -44,11 +44,11 @@ const style = StyleSheet.create({
     },
 
     btnPurple: {
-        backgroundColor: '#841584',
+        backgroundColor: '#8fd6cc',
 
     },
     btnBlue: {
-        backgroundColor: '#1e90ff',
+        backgroundColor: '#99d3ea',
     },
     // Forms style
     formContainer: {
@@ -62,14 +62,48 @@ const style = StyleSheet.create({
 
     },
     errMsgBox: {
-         backgroundColor: '#c5c5c5',
+        backgroundColor: '#c5c5c5',
         marginTop: 8,
         width: '100%',
         alignItems: 'center',
-        padding:3
+        padding: 3
     },
     errMsg: {
         fontWeight: '600',
+    },
+
+    features: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap'
+    },
+    featuresItem: {
+        // flex: 1,
+        width: 150,
+        height: 150,
+        backgroundColor: 'red',
+        margin: 5,
+    },
+    imgBox: {
+        flex: 1,
+        backgroundColor: '#c5c5c5',
+        padding: 10
+    },
+    iconImg: {
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+
+    },
+    titleIcon: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        textAlign: 'center',
+        backgroundColor: 'white',
+        padding: 2
     }
 },
 )

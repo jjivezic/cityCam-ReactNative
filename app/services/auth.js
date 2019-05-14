@@ -3,10 +3,11 @@ import HttpService from '../config/http'
 // export const userService = {
 //     login
 // };
-let url = 'http://10.0.2.2:3000/';
+//let url = 'http://10.0.2.2:3000/'; za android emulator
+let url = 'http://192.168.15.131:3000/';
 
 class userService {
-  async login(user) {
+    async login(user) {
         return HttpService.apiRequest('post', url + 'user/login', user);
     }
     async register(user) {

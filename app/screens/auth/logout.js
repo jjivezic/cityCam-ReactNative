@@ -7,25 +7,25 @@ class Logout extends React.Component {
     constructor(props) {
         super(props);
         this.onButtonPress = this.onButtonPress.bind(this);
-
+        console.log('On press this.props constructor',props)
     }
     async onButtonPress() {
         console.log('On press this.props',this.props)
         try {
             await sessionService.logout()
-            this.props.navigation.navigate('Home')
+            this.props.navigation.reset('Home')
         } catch (err) {
+            console.log('erorr logout', err)
         }
-        console.log('erorr logout', err)
+      
     }
     render() {
+        console.log('logout', this.props)
         return (
             <View>
-
-                <Text>Logout</Text>
                 <TouchableOpacity
-                    onPress={this.onButtonPress}>
-                    <Text >Submit</Text>
+                    onPress={() => this.onButtonPress()}>
+                    <Text style={{color: 'white', fontWeight: 'bold',paddingRight: 5}}>Logout</Text>
                 </TouchableOpacity>
             </View>
         );
