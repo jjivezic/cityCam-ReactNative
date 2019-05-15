@@ -13,7 +13,7 @@ class Logout extends React.Component {
         console.log('On press this.props',this.props)
         try {
             await sessionService.logout()
-            this.props.navigation.reset('Home')
+            this.props.navigation.navigate('Home')
         } catch (err) {
             console.log('erorr logout', err)
         }

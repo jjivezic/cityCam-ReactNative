@@ -3,6 +3,7 @@ import { View, Text, Button, TouchableOpacity } from "react-native";
 import style from '../../styles/general'
 import sessionService from '../../config/storage';
 class HomeScreen extends React.Component {
+
     static navigationOptions = {
         title: 'Home',
         headerStyle: {
@@ -21,49 +22,64 @@ class HomeScreen extends React.Component {
         };
         this.goToLoginPage = this.goToLoginPage.bind(this);
         this.goToRegisterPage = this.goToRegisterPage.bind(this);
-        this.goToProfilPage = this.goToProfilPage.bind(this);
+      //  this.goToProfilPage = this.goToProfilPage.bind(this);
     }
 
-    componentDidMount() {
-       alert('COMPONENT DID MOUNT')
-        this.checkIfIsAuthenticated();
-    }
-    componentWillUnmount() {
-        alert('COMPONENT WILL UNMOUNT')
-      }
-    async checkIfIsAuthenticated() {
-        try {
-            let user = await sessionService.getUser()
-            this.setState({
-                authetificated: user
-            })
-            if (user) {
-                this.props.navigation.navigate('Profil')
-            } else {
-                this.props.navigation.navigate('Home')
-            }
+    // componentWillMount() {
+    //     console.log('componentWillMount home')
+    //     this.didFocusSubscription = this.props.navigation.addListener('didFocus', () => {
+    //         console.log('didFocus home')
+    //         this.checkIfIsAuthenticated();
+    //     })
 
-        } catch (err) {
-            console.log('erorr checkIfIsAuthenticated', err)
-        }
-    }
+    //     this.didBlurSubscription = this.props.navigation.addListener('didBlur', () => {
+    //         console.log('didBlur home')
+    //     })
+
+    // }
+
+    // componentWillUnmount() {
+    //     console.log('unmount Home')
+    //     this.didFocusSubscription.remove()
+    //     this.didBlurSubscription.remove()
+    // }
+    // componentDidMount() {
+    //     console.log('componentDidMount home')
+    //   //  this.checkIfIsAuthenticated();
+    // }
+
+    // async checkIfIsAuthenticated() {
+    //     try {
+    //         let user = await sessionService.getUser()
+    //         this.setState({
+    //             authetificated: user
+    //         })
+
+    //         // if (user) {
+    //         //     this.props.navigation.navigate('Profil')
+    //         // } else {
+    //         //     this.props.navigation.navigate('Home')
+    //         // }
+
+    //     } catch (err) {
+    //         console.log('erorr checkIfIsAuthenticated', err)
+    //     }
+    // }
     goToLoginPage() {
         this.props.navigation.navigate('Login')
     }
     goToRegisterPage() {
         this.props.navigation.navigate('Register')
     }
-    goToProfilPage() {
-        this.props.navigation.navigate('Profil')
-
-
-    }
+    // goToProfilPage() {
+    //     this.props.navigation.navigate('Profil')
+    // }
     render() {
         const { authetificated } = this.state;
         return (
             <View style={style.container}>
                 <Text style={style.title}> Cordiaca App </Text>
-                {!authetificated ?
+                {/* {!authetificated ? */}
                     <View style={style.btnContainer}>
                         <View style={style.btnBox}>
                             <TouchableOpacity
@@ -82,7 +98,8 @@ class HomeScreen extends React.Component {
                             </TouchableOpacity>
                         </View>
 
-                    </View> : <View>
+                    </View> 
+                    {/* : <View>
                         <View style={style.btnBox}>
                             <TouchableOpacity
                                 style={[style.btn, style.btnBlue]}
@@ -92,7 +109,7 @@ class HomeScreen extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                }
+                } */}
 
 
             </View>

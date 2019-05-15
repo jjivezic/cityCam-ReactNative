@@ -6,19 +6,17 @@ import userService from '../../services/auth';
 class Register extends React.Component {
     static navigationOptions = {
         title: 'Register',
-        /* No more header config here! */
-      };
-    
+    };
+
     constructor(props) {
         super(props);
-        // Don't call this.setState() here!
         this.state = {
             userName: '',
-            email:'',
+            email: '',
             password: '',
             errMsg: '',
             err: false,
-         
+
         };
         this.onButtonPress = this.onButtonPress.bind(this);
     }
@@ -31,18 +29,12 @@ class Register extends React.Component {
             const user = {
                 username: this.state.username,
                 password: this.state.password,
-                email:this.state.email
+                email: this.state.email
             }
 
-            console.log('user', user);
-
             const response = await userService.register(user)
-            console.log('Response data', response)
             this.props.navigation.navigate('Login')
-            // if (userLoged) {
-            //     console.log('ulogovan', userLoged)
-            //     this.props.navigation.navigate('Profil')
-            // }
+            
         } catch (e) {
             this.setState({
                 err: true,
@@ -50,9 +42,9 @@ class Register extends React.Component {
             })
         }
     }
-    
+
     render() {
-        const { username, password,email , errMsg, err} = this.state;
+        const { username, password, email, errMsg, err } = this.state;
         return (
             <View style={style.container}>
 

@@ -5,15 +5,12 @@ import userService from '../../services/auth';
 import sessionService from '../../config/storage';
 
 
-class Camera extends React.Component {
+class Location extends React.Component {
     constructor(props) {
         super(props);
         // Don't call this.setState() here!
         this.state = {
-            username: '',
-            password: '',
-            errMsg: '',
-            err: false,
+
         };
       
     }
@@ -21,8 +18,8 @@ class Camera extends React.Component {
     render() {
 
         return (
-            <Text>Camera</Text>
+            <Text>Location</Text>
         )
     }
 }
-export default Camera
+export default Location;

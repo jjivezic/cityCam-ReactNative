@@ -23,7 +23,6 @@ class Login extends React.Component {
     }
 
     async onButtonPress() {
-        console.log('Handle change', this.state)
 
         try {
             const user = {
@@ -31,10 +30,7 @@ class Login extends React.Component {
                 password: this.state.password
             }
 
-            console.log('user', user);
-
             const response = await userService.login(user)
-            console.log('Response data', response)
 
             await sessionService.storeData(response.user.token)
 
@@ -43,11 +39,9 @@ class Login extends React.Component {
 
 
             if (userLoged) {
-                console.log('ulogovan', userLoged)
                 this.props.navigation.navigate('Profil')
             }
         } catch (e) {
-            console.log('EEE', e.response.data)
             this.setState({
                 err: true,
                 errMsg: e.response.data.error.message
