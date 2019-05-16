@@ -1,8 +1,11 @@
 import React from "react";
 
-import { createStackNavigator, createAppContainer, createSwitchNavigator, createBottomTabNavigator } from "react-navigation";
+import {
+    createStackNavigator, createAppContainer, createSwitchNavigator,
+    createBottomTabNavigator, createDrawerNavigator
+} from "react-navigation";
 import { Button, TouchableOpacity, Text } from "react-native";
-//import Icon from 'react-native-vector-icons/FontAwesome';
+
 import HomeScreen from '../screens/home/home';
 import Login from '../screens/auth/login';
 import Register from '../screens/auth/register';
@@ -12,6 +15,8 @@ import AuthLoadingScreen from '../screens/auth/authLoading';
 import Camera from "../screens/camera/camera";
 import Location from "../screens/location/location";
 import Description from "../screens/description/description";
+import User from "../screens/user/user";
+import Images from "../screens/images/images";
 
 
 // const AppNavigator = createStackNavigator(
@@ -77,127 +82,37 @@ import Description from "../screens/description/description";
 //     }
 // );
 
-const TabStack1 = createStackNavigator({
-    Camera: Camera,
+//==================================================================================
 
-}, {
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: '#de5447',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
-        },
-    });
-
-const TabStack2 = createStackNavigator({
-    Location: {screen: Location},
-    Description: {screen:Description},
-
-});
-
-const AppTabNavigator = createBottomTabNavigator({
-    // tab1: TabStack1,
-    tab1: TabStack2,
-
-})
-const AppNavigator1 = createStackNavigator(
-    {
-
-        Profil: {
-            screen: Profil,
-            navigationOptions: ({ navigation }) => ({
-                title: navigation.state.routeName,
-            }),
-        },
-        Logout: {
-            screen: Logout
-        },
-        Camera: {
-            screen: Camera,
-            navigationOptions: ({ navigation }) => ({
-                title: navigation.state.routeName,
-            }),
-        },
-        Location: {
-            screen: Location,
-            navigationOptions: ({ navigation }) => ({
-                title: navigation.state.routeName,
-            }),
-        },
-        Description: {
-            screen: Description,
-            navigationOptions: ({ navigation }) => ({
-                title: navigation.state.routeName,
-            }),
-        },
-        Tabs: { screen: 'TabStack2' }
-
-    },
-    {
-        initialRouteName: "Tabs",
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: '#de5447',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
-        },
-    }
-);
-const AuthNavigator = createStackNavigator(
-    {
-
-        Home: {
-            screen: HomeScreen,
-            navigationOptions: ({ navigation }) => ({
-                title: navigation.state.routeName,
-            }),
-        },
-        Login: {
-            screen: Login,
-            navigationOptions: ({ navigation }) => ({
-                title: navigation.state.routeName,
-            }),
-        },
-        Register: {
-            screen: Register,
-            navigationOptions: ({ navigation }) => ({
-                title: navigation.state.routeName,
-            }),
-        },
-    },
-
-    {
-        initialRouteName: "Home",
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: '#de5447',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
-        },
-    }
-);
+// Router without Tab
+// const UnauthorizedStack = createStackNavigator({
+//     Profil: Profil,
+//     Logout: Logout,
+//     Camera: Camera,
+//     Location: Location,
+//     Description: Description,
 
 
+// }, {
+//         defaultNavigationOptions: {
+//             headerStyle: {
+//                 backgroundColor: '#de5447',
+//             },
+//             headerTintColor: '#fff',
+//             headerTitleStyle: {
+//                 fontWeight: 'bold',
+//             },
+//         },
+//     });
 
 
-
-const AppStack = createStackNavigator({
+const tab1 = createStackNavigator({
     Profil: Profil,
     Logout: Logout,
     Camera: Camera,
     Location: Location,
     Description: Description,
 
-
 }, {
         defaultNavigationOptions: {
             headerStyle: {
@@ -210,18 +125,77 @@ const AppStack = createStackNavigator({
         },
     });
 
+const tab2 = createStackNavigator({
+    User: User
+}, {
+        //configuration options...
+    });
 
-const AuthStack = createStackNavigator({
+
+//Router with Tab
+// If user is authorized see this pages with tabs
+const AppTabNavigator = createBottomTabNavigator({
+    Profile: tab1,
+    User: tab2,
+}, {
+
+        navigationOptions: ({ navigation }) => ({
+            //define the icon for each tab here...
+        }),
+        tabBarOptions: {
+            initialRouteName: 'Profil',
+            activeTintColor: '#de5447',
+            inactiveTintColor: '#ddd',
+            style: {
+                backgroundColor: '#4d535e',
+            },
+            labelStyle: {
+                fontWeight: 'bold',
+                fontSize: 13,
+
+            },
+            tabStyle: {
+                borderWidth: 0.3,
+                borderColor: '#605F60',
+                justifyContent: 'center',
+
+            },
+            showIcon: false//dont show icons
+        },
+
+    });
+
+// If user is unauthorized see this pages
+const UnauthorizedStack = createStackNavigator({
     Home: HomeScreen,
     Login: Login,
     Register: Register
+},
+    // {
+    //     defaultNavigationOptions: {
+    //         headerStyle: {
+    //             backgroundColor: '#de5447',
+    //         },
+    //         headerTintColor: '#fff',
+    //         headerTitleStyle: {
+    //             fontWeight: 'bold',
+    //         },
+    //     },
+    // }
+    );
+
+const AppDrawerNavigator = createDrawerNavigator({
+    AppTabNavigator: AppTabNavigator,
+    Images: Images,
+    Location: Location,
 });
+
 
 const AppNavigator = createSwitchNavigator(
     {
         AuthLoading: AuthLoadingScreen,
-        App: AppStack,
-        Auth: AuthStack,
+        App: AppDrawerNavigator,
+        Auth: UnauthorizedStack,
     },
     {
         initialRouteName: 'AuthLoading',
@@ -236,5 +210,13 @@ const AppNavigator = createSwitchNavigator(
         },
     }
 );
+
+
+
+
+
+
+
+
 
 export default createAppContainer(AppNavigator);

@@ -4,6 +4,7 @@ import { StackActions, NavigationActions } from "react-navigation";
 
 import style from '../../styles/general';
 import Logout from '../auth/logout';
+import NavigationDrawerStructure from '../../config/drawerRouter'
 const camera = require('../../images/camera.png');
 const location = require('../../images/location.png');
 const description = require('../../images/description.png');
@@ -13,9 +14,12 @@ const arrow = require('../../images/arrow.png');
 
 class Dashboard extends React.Component {
     static navigationOptions = ({ navigation }) => {
+        console.log('navigation Dashboard',navigation)
         return {
-            title: 'Profil',
-            headerRight: (<Logout navigation={navigation} />)
+            // title: 'Profil',
+            headerTitle: 'Dashboard',
+            headerRight: (<Logout navigation={navigation} />),
+            headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
 
         };
     }

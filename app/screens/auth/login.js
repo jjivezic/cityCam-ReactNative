@@ -76,6 +76,7 @@ class Login extends React.Component {
                             onPress={this.onButtonPress}>
                             <Text style={style.btnText}>Submit</Text>
                         </TouchableOpacity>
+                     
                     </View>
                 </View>
                 {err ? <View style={style.errMsgBox}>

@@ -33,8 +33,9 @@ const style = StyleSheet.create({
     btnText: {
         color: '#ffffff',
         fontWeight: '600',
-        textTransform: 'uppercase'
+       // textTransform: 'uppercase'
     },
+ 
     btn: {
         width: '100%',
         height: '100%',
