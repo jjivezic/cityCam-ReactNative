@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, TouchableOpacity, ImageBackground} from "react-native";
+import { View, Text, Button, TouchableOpacity, ImageBackground } from "react-native";
 import { StackActions, NavigationActions } from "react-navigation";
 
 import style from '../../styles/general';
@@ -14,7 +14,7 @@ const arrow = require('../../images/arrow.png');
 
 class Dashboard extends React.Component {
     static navigationOptions = ({ navigation }) => {
-        console.log('navigation Dashboard',navigation)
+        console.log('navigation Dashboard', navigation)
         return {
             // title: 'Profil',
             headerTitle: 'Dashboard',

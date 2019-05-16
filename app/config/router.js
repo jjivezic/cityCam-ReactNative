@@ -182,7 +182,7 @@ const UnauthorizedStack = createStackNavigator({
     //         },
     //     },
     // }
-    );
+);
 
 const AppDrawerNavigator = createDrawerNavigator({
     AppTabNavigator: AppTabNavigator,
