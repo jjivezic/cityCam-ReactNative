@@ -1,7 +1,7 @@
 package com.cordiaca;
 
 import android.app.Application;
-
+import com.imagepicker.ImagePickerPackage; // <-- add this import
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
@@ -28,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new VectorIconsPackage(),
             new AsyncStoragePackage(),
-            new RNGestureHandlerPackage()
+            new RNGestureHandlerPackage(),
+             new ImagePickerPackage()
       );
     }
 

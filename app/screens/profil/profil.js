@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, TouchableOpacity, ImageBackground } from "react-native";
+import { View, Text, Button, TouchableOpacity, ImageBackground} from "react-native";
 import { StackActions, NavigationActions } from "react-navigation";
 
 import style from '../../styles/general';
@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
 
         if (item === 'camera') {
             // this.props.navigation.dispatch(this.resetAction)
-            this.props.navigation.navigate('Location')
+            this.props.navigation.navigate('Camera')
         } else if (item === 'location') {
             this.props.navigation.navigate('Location')
         } else if (item === 'description') {
