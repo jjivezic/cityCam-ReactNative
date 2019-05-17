@@ -44,7 +44,7 @@ const style = StyleSheet.create({
         color: '#ffffff'
     },
 
-    btnPurple: {
+    btnMint: {
         backgroundColor: '#8fd6cc',
 
     },

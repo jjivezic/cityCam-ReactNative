@@ -46,7 +46,7 @@ class Dashboard extends React.Component {
     // }
     onButtonPress(item) {
 
-        console.log('Camera button pressed', item)
+        console.log('Profil pressed button', item)
 
         if (item === 'camera') {
             // this.props.navigation.dispatch(this.resetAction)

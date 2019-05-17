@@ -14,7 +14,7 @@ import axios from 'axios'
 
 // Add a response interceptor
 axios.interceptors.response.use((response) => {
-    console.log('response is ', response)
+    console.log('response is axios.interceptors.response', response)
     // Do something with response data
     return response.data
 }, (error) => {

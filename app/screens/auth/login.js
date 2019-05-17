@@ -31,16 +31,15 @@ class Login extends React.Component {
             }
 
             const response = await userService.login(user)
+            await sessionService.storeData(response.user)
 
-            await sessionService.storeData(response.user.token)
-
-            let userLoged = await sessionService.getUser()
-            console.log('userLoged', userLoged)
+            let userLoged = await sessionService.getToken()
+            console.log('user is Loged', userLoged)
 
 
-            if (userLoged) {
+           if (userLoged) {
                 this.props.navigation.navigate('Profil')
-            }
+           }
         } catch (e) {
             this.setState({
                 err: true,
@@ -72,11 +71,11 @@ class Login extends React.Component {
                 <View style={style.btnContainer}>
                     <View style={style.btnBox}>
                         <TouchableOpacity
-                            style={[style.btn, style.btnPurple]}
+                            style={[style.btn, style.btnMint]}
                             onPress={this.onButtonPress}>
                             <Text style={style.btnText}>Submit</Text>
                         </TouchableOpacity>
-                     
+
                     </View>
                 </View>
                 {err ? <View style={style.errMsgBox}>

@@ -38,7 +38,7 @@ class Description extends React.Component {
                 <View style={style.btnContainer}>
                     <View style={style.btnBox}>
                         <TouchableOpacity
-                            style={[style.btn, style.btnPurple]}
+                            style={[style.btn, style.btnMint]}
                             onPress={this.onButtonPress}>
                             <Text style={style.btnText}>Save</Text>
                         </TouchableOpacity>
